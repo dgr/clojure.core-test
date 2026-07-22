@@ -146,7 +146,6 @@
       (is (= :a (nth (seq (sorted-set :a :b :c :d)) 0))) ; to control order
 
       (is (p/thrown? (nth [0 1 2] nil)))
-      (is (p/thrown? (nth nil -1)))
 
       ;; Try negative `index` and both `coll` and `index` equal to `nil`
       #?@(:lpy
