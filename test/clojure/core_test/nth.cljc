@@ -50,8 +50,8 @@
       ;; re-matchers are stateful, so set it up and then force the
       ;; matching with `re-find`.
       #?(:cljs nil ; CLJS doesn't have re-matcher
-         :default (let [m (-> (re-matcher #"(\d+),(\d+),(\d+)" "123,456,789")
-                              re-find)]
+         :default (let [m (re-matcher #"(\d+),(\d+),(\d+)" "123,456,789")]
+                    (re-find m)
                     (are [expected coll index] (= expected (nth coll index))
                       "123,456,789" m 0
                       "456" m 2
@@ -111,8 +111,8 @@
       ;; re-matchers are stateful, so set it up and then force the
       ;; matching with `re-find`.
       #?(:cljs nil ; CLJS doesn't have re-matcher
-         :default (let [m (-> (re-matcher #"(\d+),(\d+),(\d+)" "123,456,789")
-                              re-find)]
+         :default (let [m (re-matcher #"(\d+),(\d+),(\d+)" "123,456,789")]
+                    (re-find m)
                     (are [expected coll index] (= expected (nth coll index))
                       "123,456,789" m 0
                       "456" m 2
