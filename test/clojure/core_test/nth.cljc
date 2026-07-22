@@ -44,7 +44,8 @@
         ;; Surprisingly, `nil` collection returns `nil`, regardless of
         ;; `index`
         nil nil 0
-        nil nil 10)
+        nil nil 10
+        nil nil -1)
 
       ;; re-matcher (NOTE: NOT re-matches)
       ;; re-matchers are stateful, so set it up and then force the
@@ -105,7 +106,8 @@
 
         ;; When collection is `nil`, returns `:default`
         :default nil 0 :default
-        :default nil 10 :default)
+        :default nil 10 :default
+        :default nil -1 :default)
 
       ;; re-matcher (NOTE: NOT re-matches)
       ;; re-matchers are stateful, so set it up and then force the
@@ -144,6 +146,7 @@
       (is (= :a (nth (seq (sorted-set :a :b :c :d)) 0))) ; to control order
 
       (is (p/thrown? (nth [0 1 2] nil)))
+      (is (p/thrown? (nth nil -1)))
 
       ;; Try negative `index` and both `coll` and `index` equal to `nil`
       #?@(:lpy
